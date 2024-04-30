@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draw Sketch Window</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <link rel="stylesheet" href="drawing.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="left">
+        <h1>Facial Components</h1>
+        <div id="head" class="component">
+          <div class="component-img c-head"></div>
+          <div class="compnent-tag">Head</div>
+        </div>
+        <div id="eyes" class="component">
+          <div class="component-img c-eyes"></div>
+          <div class="compnent-tag">Eyes</div>
+        </div>
+        <div id="eyebrows" class="component">
+          <div class="component-img c-eyebrows"></div>
+          <div class="compnent-tag">Eyebrows</div>
+        </div>
+        <div id="hair" class="component">
+          <div class="component-img c-hair"></div>
+          <div class="compnent-tag">Hair</div>
+        </div>
+        <div id="lips" class="component">
+          <div class="component-img c-lips"></div>
+          <div class="compnent-tag">Lips</div>
+        </div>
+        <div id="nose" class="component">
+          <div class="component-img c-nose"></div>
+          <div class="compnent-tag">Nose</div>
+        </div>
+        <div id="mustach" class="component">
+          <div class="component-img c-mustach"></div>
+          <div class="compnent-tag">Mustach</div>
+        </div>
+        <div id="more" class="component">
+          <div class="component-img c-more"></div>
+          <div class="compnent-tag">More</div>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="actions">
+          <div class="action-btn" id="save">Save</div>
+          <div class="action-btn" id="close">Reset</div>
+          <div class="action-btn" id="exit">Exit</div>
+        </div>
+        <div id="canvas-container">
+          <canvas id="canvas" width="500" height="700"> </canvas>
+        </div>
+      </div>
+      <div class="right" id="images">Select Component</div>
+    </div>
+    <script src="./action.js"></script>
+    <script src="./fabric.min.js"></script>
+  </body>
+</html>

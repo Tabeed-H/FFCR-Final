@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: 0;
+}
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left {
+  flex-grow: 0.5;
+  max-width: 25%;
+  background-color: #495057;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.middle {
+  flex-grow: 3;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: Poppins;
+  padding-top: 20px;
+}
+.right {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: scroll;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+}
+.right > img {
+  width: 150px;
+  max-height: 250px;
+  margin: 10px;
+  cursor: pointer;
+}
+.right > img:hover {
+  background-color: #dee2e6;
+}
+
+.left > h1 {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: Poppins;
+}
+.component {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 95px;
+  height: 95px;
+  background-color: #ced4da;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  cursor: pointer;
+}
+.component:hover {
+  background-color: #adb5bd;
+}
+.component-img {
+  height: 45px;
+  width: 45px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.compnent-tag {
+  font-family: Poppins;
+  font-size: 14px;
+}
+.c-head {
+  background-image: url("file:///assets/face/head/01.png");
+}
+.c-eyes {
+  background-image: url("file:///assets/face/eyes/01.png");
+}
+.c-eyebrows {
+  background-image: url("file:///assets/face/eyebrows/01.png");
+}
+.c-hair {
+  background-image: url("file:///assets/face/hair/01.png");
+}
+.c-lips {
+  background-image: url("file:///assets/face/lips/02.png");
+}
+.c-nose {
+  background-image: url("file:///assets/face/nose/01.png");
+}
+.c-mustach {
+  background-image: url("file:///assets/face/mustach/01.png");
+}
+/* lkdfkf */
+#canvas-container {
+  position: relative;
+  /* width: 800px; */
+  /* height: 600px; */
+  box-shadow: 0 0 5px 1px black;
+  margin: 10px auto;
+  border: 5px solid transparent;
+}
+#canvas-container.over {
+  border: 5px dashed cyan;
+}
+#images img.img_dragging {
+  /* width: 100%; */
+  opacity: 0.4;
+}
+/* 
+Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/ 
+*/
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: move;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}
+.action-btn {
+  font-family: Poppins, sans-serif;
+  justify-content: center;
+  background-color: #495057;
+  margin-top: 26px;
+  width: 90px;
+  max-width: 100%;
+  color: #fff;
+  white-space: nowrap;
+  padding: 11px 43px;
+  cursor: pointer;
+}
+.action-btn:hover {
+  background-color: #1a1a1a;
+}
+#exit {
+  background-color: #d62828;
+  color: #fff;
+}

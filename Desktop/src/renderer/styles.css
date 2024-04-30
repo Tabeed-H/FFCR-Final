@@ -1,0 +1,69 @@
+/* styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+.background-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 100%;
+  background-image: url("file:///assets/images/manager-deskBackground.png");
+  background-size: cover;
+  opacity: 50%;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  max-width: 421px;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #000;
+  font-weight: 400;
+  padding: 0 20px;
+}
+.main-heading {
+  white-space: nowrap;
+  font: 700 40px Poppins, sans-serif;
+  text-shadow: #1a1a1a;
+}
+.main-sub {
+  font-family: Poppins, sans-serif;
+  margin-top: 9px;
+  white-space: nowrap;
+}
+.main-des {
+  text-align: center;
+  align-self: stretch;
+  margin-top: 32px;
+  width: 100%;
+  font: 300 15px Poppins, sans-serif;
+}
+.main-btn {
+  font-family: Poppins, sans-serif;
+  justify-content: center;
+  background-color: #495057;
+  margin-top: 26px;
+  width: 160px;
+  max-width: 100%;
+  color: #fff;
+  white-space: nowrap;
+  padding: 11px 43px;
+  cursor: pointer;
+}
+.main-btn:hover {
+  background-color: #1a1a1a;
+}
