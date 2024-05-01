@@ -46,10 +46,21 @@
       </div>
       <div class="middle">
         <div class="actions">
+          <!-- Dropdown menu -->
+          <div class="dropdown">
+            <button class="dropbtn" id="dropdown-button">
+              Resource Pack:<br /><span id="dropvalue">Default</span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content">
+              <a href="#" data-value="Default">Default</a>
+              <a href="#" data-value="RE-JK">RE-JK</a>
+            </div>
+          </div>
           <div class="action-btn" id="save">Save</div>
           <div class="action-btn" id="close">Reset</div>
           <div class="action-btn" id="exit">Exit</div>
         </div>
+
         <div id="canvas-container">
           <canvas id="canvas" width="500" height="700"> </canvas>
         </div>

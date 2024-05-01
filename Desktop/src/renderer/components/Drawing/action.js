@@ -1,3 +1,33 @@
+let selectedValue = "Default";
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the dropdown button element
+  var dropdownButton = document.getElementById("dropvalue");
+
+  // Get the dropdown content element
+  var dropdownContent = document.getElementById("dropdown-content");
+
+  // Add click event listener to the dropdown content
+  dropdownContent.addEventListener("click", function (event) {
+    // Prevent default action of link click
+    event.preventDefault();
+
+    // Get the selected value
+    selectedValue = event.target.dataset.value;
+
+    // Set the dropdown button text to the selected value
+    dropdownButton.textContent = `${selectedValue}`;
+
+    const rightContainer = document.querySelector(".right");
+    rightContainer.innerHTML = ""; // Clear existing content
+
+    // Log the selected value to the console
+    console.log("Selected value:", selectedValue);
+
+    // You can perform further actions based on the selected value here
+  });
+});
+
 // Add an event listener to each component button
 document.querySelectorAll(".component").forEach((component) => {
   component.addEventListener("click", () => {
@@ -7,12 +37,12 @@ document.querySelectorAll(".component").forEach((component) => {
     // Get the container element on the right side
     const rightContainer = document.querySelector(".right");
     console.log(componentId);
-    displayImagesForComponent(componentId);
+    displayImagesForComponent(componentId, selectedValue);
   });
 });
 
 // Function to load and display images for the selected component
-async function displayImagesForComponent(componentId) {
+async function displayImagesForComponent(componentId, resourcePack) {
   // Get the container element on the right side
   const rightContainer = document.querySelector(".right");
 
@@ -20,22 +50,22 @@ async function displayImagesForComponent(componentId) {
   rightContainer.innerHTML = "";
 
   // Construct the path to the component folder
-  const componentFolderPath = `assets/face/${componentId}`;
+  const componentFolderPath = `assets/${resourcePack}/${componentId}`;
 
   try {
     const fileList = await window.electronAPI.getFileList(componentFolderPath);
-    displayImages(fileList, componentId);
+    displayImages(fileList, componentId, resourcePack);
   } catch (error) {
     console.error("Error getting file list:", error);
   }
 }
 
-function displayImages(fileList, componentId) {
+function displayImages(fileList, componentId, resourcePack) {
   const rightContainer = document.querySelector(".right");
   rightContainer.innerHTML = ""; // Clear existing content
   fileList.forEach((fileName) => {
     const imgElement = document.createElement("img");
-    imgElement.src = `file:///assets/face/${componentId}/${fileName}`;
+    imgElement.src = `file:///assets/${resourcePack}/${componentId}/${fileName}`;
     imgElement.draggable = true;
     imgElement.className = "dragImg";
     imgElement.id = `${componentId}-${fileName}`;

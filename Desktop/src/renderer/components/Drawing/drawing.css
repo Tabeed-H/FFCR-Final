@@ -87,25 +87,28 @@ body {
   font-size: 14px;
 }
 .c-head {
-  background-image: url("file:///assets/face/head/01.png");
+  background-image: url("file:///assets/Default/head/01.png");
 }
 .c-eyes {
-  background-image: url("file:///assets/face/eyes/01.png");
+  background-image: url("file:///assets/Default/eyes/01.png");
 }
 .c-eyebrows {
-  background-image: url("file:///assets/face/eyebrows/01.png");
+  background-image: url("file:///assets/Default/eyebrows/01.png");
 }
 .c-hair {
-  background-image: url("file:///assets/face/hair/01.png");
+  background-image: url("file:///assets/Default/hair/01.png");
 }
 .c-lips {
-  background-image: url("file:///assets/face/lips/02.png");
+  background-image: url("file:///assets/Default/lips/02.png");
 }
 .c-nose {
-  background-image: url("file:///assets/face/nose/01.png");
+  background-image: url("file:///assets/Default/nose/01.png");
 }
 .c-mustach {
-  background-image: url("file:///assets/face/mustach/01.png");
+  background-image: url("file:///assets/Default/mustach/01.png");
+}
+.c-more {
+  background-image: url("file:///assets/Default/more/01.png");
 }
 /* lkdfkf */
 #canvas-container {
@@ -161,4 +164,54 @@ Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/
 #exit {
   background-color: #d62828;
   color: #fff;
+}
+
+/* Style the dropdown button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 170px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
 }
