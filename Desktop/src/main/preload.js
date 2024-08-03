@@ -3,7 +3,6 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 // Define the API methods to expose
 const api = {
-  // Example method to send a message to the main process
   sendMessageToMain: (channel, data) => {
     ipcRenderer.send(channel, data);
   },
@@ -14,6 +13,24 @@ const api = {
     } catch (error) {
       console.error("Error getting file list:", error);
       return [];
+    }
+  },
+  sendImage: async (path) => {
+    try {
+      const result = await ipcRenderer.invoke("send-image", path);
+      return result;
+    } catch (error) {
+      console.error("Error in sending file to model: ", error);
+      return -1;
+    }
+  },
+  getPerson: async (person_id) => {
+    try {
+      const result = await ipcRenderer.invoke("get-person", person_id);
+      return result;
+    } catch (error) {
+      console.error("Error Fetching Person Detsils");
+      return "Error Fetching Person Details";
     }
   },
 };

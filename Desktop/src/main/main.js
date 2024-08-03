@@ -3,6 +3,8 @@ console.log("Starting");
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const axios = require("axios");
+const FormData = require("form-data");
 
 let mainWindow, drawSketchWindow;
 
@@ -39,11 +41,12 @@ ipcMain.on("open-draw-sketch-window", () => {
 
 ipcMain.on("open-run-recognition-window", () => {
   const runRecognitionWindow = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 1440,
+    height: 860,
 
     webPreferences: {
       nodeIntegration: true,
+      preload: path.join(__dirname, "./preload.js"),
     },
   });
 
@@ -65,4 +68,41 @@ ipcMain.handle("get-file-list", async (event, directoryPath) => {
 });
 ipcMain.on("closeWindow", () => {
   drawSketchWindow.close();
+});
+
+ipcMain.handle("send-image", async (event, filePath) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", fs.createReadStream(filePath));
+
+    const response = await axios.post(
+      "http://localhost:5000/recognize",
+      formData,
+      {
+        headers: formData.getHeaders(),
+      }
+    );
+    data = {
+      name: response.data.name,
+      confidence: response.data.confidence,
+    };
+    return data;
+  } catch (error) {
+    console.error(error);
+    return { error: "Failed to process image" };
+  }
+});
+
+ipcMain.handle("get-person", async (event, person_id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/person/${person_id}`
+    );
+    if (!response) {
+      throw new Error("Failed to fetch person details");
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error in fetching person details:", error);
+  }
 });

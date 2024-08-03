@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Run Recognition Window</title>
+    <title>Image Recognition</title>
+    <link rel="stylesheet" href="recognition.css" />
   </head>
   <body>
-    <h1>Run Recognition Window</h1>
-    <!-- Add your content here -->
+    <h1>Image Recognition</h1>
+    <div class="container" id="container">
+      <div id="left-panel">
+        <input type="file" id="imageUpload" />
+        <div id="imagePreview"></div>
+        <button id="sendImage">Send Image</button>
+        <div id="loader"></div>
+      </div>
+      <div id="right-panel">
+        <!-- Person details will be displayed here -->
+      </div>
+    </div>
+    <button id="instructions-button">Instructions</button>
+    <!-- <div id="instructions-panel">
+      <h3>Instructions</h3>
+      <p>1. Upload an image using the "Choose File" button.</p>
+      <p>2. Click the "Send Image" button to start the recognition process.</p>
+      <p>3. The recognized person's details will be displayed on the right.</p>
+      <h4>Confidence Score</h4>
+      <p>
+        The confidence score indicates how confident the system is about the
+        recognition result:
+      </p>
+      <ul>
+        <li style="color: green">
+          Confidence &lt; 0.5: High confidence (correct identification)
+        </li>
+        <li style="color: red">
+          Confidence &gt; 0.5: Low confidence (possible mismatch)
+        </li>
+      </ul>
+      <p>
+        <strong>Note:</strong> Ensure the uploaded image is clear and well-lit
+        for better recognition accuracy.
+      </p>
+    </div> -->
+    <script src="./recognition.js"></script>
   </body>
 </html>

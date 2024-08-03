@@ -1,40 +1,24 @@
 let selectedValue = "Default";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Get the dropdown button element
   var dropdownButton = document.getElementById("dropvalue");
-
-  // Get the dropdown content element
   var dropdownContent = document.getElementById("dropdown-content");
-
-  // Add click event listener to the dropdown content
   dropdownContent.addEventListener("click", function (event) {
-    // Prevent default action of link click
     event.preventDefault();
-
-    // Get the selected value
     selectedValue = event.target.dataset.value;
 
-    // Set the dropdown button text to the selected value
     dropdownButton.textContent = `${selectedValue}`;
 
     const rightContainer = document.querySelector(".right");
-    rightContainer.innerHTML = ""; // Clear existing content
+    rightContainer.innerHTML = "";
 
-    // Log the selected value to the console
     console.log("Selected value:", selectedValue);
-
-    // You can perform further actions based on the selected value here
   });
 });
 
-// Add an event listener to each component button
 document.querySelectorAll(".component").forEach((component) => {
   component.addEventListener("click", () => {
-    // Get the ID of the clicked component
     const componentId = component.id;
-
-    // Get the container element on the right side
     const rightContainer = document.querySelector(".right");
     console.log(componentId);
     displayImagesForComponent(componentId, selectedValue);
@@ -43,13 +27,10 @@ document.querySelectorAll(".component").forEach((component) => {
 
 // Function to load and display images for the selected component
 async function displayImagesForComponent(componentId, resourcePack) {
-  // Get the container element on the right side
   const rightContainer = document.querySelector(".right");
 
-  // Clear the existing content in the right container
   rightContainer.innerHTML = "";
 
-  // Construct the path to the component folder
   const componentFolderPath = `assets/${resourcePack}/${componentId}`;
 
   try {
@@ -62,7 +43,7 @@ async function displayImagesForComponent(componentId, resourcePack) {
 
 function displayImages(fileList, componentId, resourcePack) {
   const rightContainer = document.querySelector(".right");
-  rightContainer.innerHTML = ""; // Clear existing content
+  rightContainer.innerHTML = "";
   fileList.forEach((fileName) => {
     const imgElement = document.createElement("img");
     imgElement.src = `file:///assets/${resourcePack}/${componentId}/${fileName}`;
@@ -71,9 +52,7 @@ function displayImages(fileList, componentId, resourcePack) {
     imgElement.id = `${componentId}-${fileName}`;
     rightContainer.appendChild(imgElement);
   });
-  // Browser supports HTML5 DnD.
 
-  // Bind the event listeners for the image elements
   var images = document.querySelectorAll(".dragImg");
   [].forEach.call(images, function (img) {
     console.log(images);
@@ -88,8 +67,11 @@ function displayImages(fileList, componentId, resourcePack) {
   canvasContainer.addEventListener("drop", handleDrop, false);
 }
 
-///// DRAGGG
-// index.js (Renderer process)
+// ----------------------------------------------------------------------------------------------------------------------------
+//                                        FABRIC.JS CANVAS CODE
+// ----------------------------------------------------------------------------------------------------------------------------
+// NOTE: Donot remove or change anything
+// ---------------------------------------------------------------------------------------------------------------------------
 
 var canvas = new fabric.Canvas("canvas");
 
@@ -155,6 +137,7 @@ function handleDragEnd(e) {
     img.classList.remove("img_dragging");
   });
 }
+// ----------------------------------------------------------------------------------------------------------------------------------
 
 // Reset button click event
 document.getElementById("close").addEventListener("click", function () {
