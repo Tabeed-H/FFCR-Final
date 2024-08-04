@@ -6,6 +6,11 @@
   </head>
   <body>
     <h1>Image Recognition</h1>
+    <div id="results-info">
+      <div id="process-indicator" style="color: gray; border: 1px solid gray">
+        Upload Image
+      </div>
+    </div>
     <div class="container" id="container">
       <div id="left-panel">
         <input type="file" id="imageUpload" />
@@ -17,12 +22,8 @@
         <!-- Person details will be displayed here -->
       </div>
     </div>
-    <button id="instructions-button">Instructions</button>
-    <!-- <div id="instructions-panel">
+    <div id="instructions-panel">
       <h3>Instructions</h3>
-      <p>1. Upload an image using the "Choose File" button.</p>
-      <p>2. Click the "Send Image" button to start the recognition process.</p>
-      <p>3. The recognized person's details will be displayed on the right.</p>
       <h4>Confidence Score</h4>
       <p>
         The confidence score indicates how confident the system is about the
@@ -36,11 +37,7 @@
           Confidence &gt; 0.5: Low confidence (possible mismatch)
         </li>
       </ul>
-      <p>
-        <strong>Note:</strong> Ensure the uploaded image is clear and well-lit
-        for better recognition accuracy.
-      </p>
-    </div> -->
+    </div>
     <script src="./recognition.js"></script>
   </body>
 </html>

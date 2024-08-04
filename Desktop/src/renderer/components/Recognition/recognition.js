@@ -1,96 +1,108 @@
-// // const { ipcRenderer } = require("electron");
-// console.log("Started Recogniton");
-// document.getElementById("sendImage").addEventListener("click", async () => {
-//   let name, confidence;
-//   const fileInput = document.getElementById("imageUpload");
-//   if (fileInput.files.length === 0) {
-//     alert("Please select an image file");
-//     return;
-//   }
-
-//   const file = fileInput.files[0];
-//   const filePath = file.path;
-
-//   try {
-//     const result = await window.electronAPI.sendImage(filePath);
-//     name = result.name;
-//     confidence = result.confidence;
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   document.getElementById("result").innerText = JSON.stringify(
-//     name,
-//     confidence
-//   );
-// });
 document
   .getElementById("imageUpload")
   .addEventListener("change", function (event) {
     const fileInput = event.target;
     const file = fileInput.files[0];
     const preview = document.getElementById("imagePreview");
+    const processIndicator = document.getElementById("process-indicator");
 
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
         preview.style.backgroundImage = `url(${e.target.result})`;
+        processIndicator.innerHTML =
+          '<img src="file:///assets/images/success.png" alt="Loader" /> Image Uploaded';
+        processIndicator.style.color = "gray";
+        processIndicator.style.border = "1px solid gray";
       };
       reader.readAsDataURL(file);
     } else {
       preview.style.backgroundImage = "";
+      processIndicator.innerHTML = "Upload image";
+      processIndicator.style.color = "gray";
+      processIndicator.style.border = "1px solid gray";
     }
   });
 
 document.getElementById("sendImage").addEventListener("click", async () => {
+  const rightPanel = document.getElementById("right-panel");
+  const processIndicator = document.getElementById("process-indicator");
+  rightPanel.innerHTML = "";
+
   const fileInput = document.getElementById("imageUpload");
   const loader = document.getElementById("loader");
-  const resultDiv = document.getElementById("result");
 
   if (fileInput.files.length === 0) {
     alert("Please select an image file");
+    processIndicator.innerHTML =
+      '<img src="file:///assets/images/error.png" alt="Error" /> No image uploaded';
+    processIndicator.style.color = "red";
+    processIndicator.style.border = "1px solid red";
     return;
   }
 
   const file = fileInput.files[0];
   const filePath = file.path;
 
+  processIndicator.innerHTML =
+    '<img src="file:///assets/images/loading.gif" alt="Loader" /> Sending image to model...';
+  processIndicator.style.color = "gray";
+  processIndicator.style.border = "1px solid blue";
   loader.style.display = "block";
 
   try {
-    // resultDiv.innerHTML = `<p>Error in recognition</p>`;
-    loader.innerHTML = "Loading..";
     const result = await window.electronAPI.sendImage(filePath);
     const name = result.name;
     const confidence = result.confidence;
     const person_id = name.split(".")[0];
 
     loader.style.display = "none";
+    processIndicator.innerHTML =
+      '<img src="file:///assets/images/loading.gif" alt="Loader" /> Fetching person details...';
+    processIndicator.style.color = "gray";
+    processIndicator.style.border = "1px solid blue";
 
     fetchPersonDetails(person_id, confidence);
   } catch (error) {
     console.error("Error in sending file to model:", error);
     loader.style.display = "none";
-    resultDiv.innerHTML = `<p>Error in recognition</p>`;
+    processIndicator.innerHTML =
+      '<img src="file:///assets/images/error.png" alt="Error" /> Error in recognition';
+    processIndicator.style.color = "red";
+    processIndicator.style.border = "1px solid red";
   }
 });
 
 async function fetchPersonDetails(person_id, confidence) {
+  const rightPanel = document.getElementById("right-panel");
+  const processIndicator = document.getElementById("process-indicator");
+
   try {
     const response = await window.electronAPI.getPerson(person_id);
     if (!response) {
-      // window.alert("Cannot Detect Person with Accuracy");
       throw new Error("Failed to fetch person details");
     }
 
     const person = { ...response, confidence };
     displayPersonDetails(person);
+
+    processIndicator.innerHTML =
+      '<img src="file:///assets/images/success.png" alt="Success" /> Recognition successful';
+    processIndicator.style.color = "green";
+    processIndicator.style.border = "1px solid green";
   } catch (error) {
     console.error("Error in fetching person details:", error);
+    rightPanel.innerHTML = `<p style="color: red">${error}</p>`;
+    processIndicator.innerHTML =
+      '<img src="file:///assets/images/error.png" alt="Error" /> Error in fetching details';
+    processIndicator.style.color = "red";
+    processIndicator.style.border = "1px solid red";
   }
 }
 
 function displayPersonDetails(person) {
   const rightPanel = document.getElementById("right-panel");
+
   // Clear previous details
   rightPanel.innerHTML = "";
 
@@ -105,6 +117,7 @@ function displayPersonDetails(person) {
   img.alt = "Person Image";
   img.style.width = "200px"; // Set image width
   img.style.height = "auto"; // Maintain aspect ratio
+  rightPanel.appendChild(img);
 
   // Create a div to hold details
   const detailsDiv = document.createElement("div");
@@ -132,16 +145,6 @@ function displayPersonDetails(person) {
     }
   });
 
-  // Append image and details to the right panel
-  rightPanel.appendChild(img);
+  // Append details to the right panel
   rightPanel.appendChild(detailsDiv);
 }
-
-document.getElementById("instructions-button").addEventListener("click", () => {
-  const instructionsPanel = document.getElementById("instructions-panel");
-  if (instructionsPanel.style.right === "10px") {
-    instructionsPanel.style.right = "-300px";
-  } else {
-    instructionsPanel.style.right = "10px";
-  }
-});

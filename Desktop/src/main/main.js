@@ -27,8 +27,8 @@ app.on("ready", createMainWindow);
 
 ipcMain.on("open-draw-sketch-window", () => {
   drawSketchWindow = new BrowserWindow({
-    width: 1440,
-    height: 860,
+    width: 1920,
+    height: 1080,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, "./preload.js"),
@@ -41,8 +41,8 @@ ipcMain.on("open-draw-sketch-window", () => {
 
 ipcMain.on("open-run-recognition-window", () => {
   const runRecognitionWindow = new BrowserWindow({
-    width: 1440,
-    height: 860,
+    width: 1920,
+    height: 1080,
 
     webPreferences: {
       nodeIntegration: true,
