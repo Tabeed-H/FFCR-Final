@@ -1,0 +1,33 @@
+Total images: 2968
+Number of persons: 30
+Number of images per person:
+  person01: 24
+  person02: 21
+  person03: 20
+  person04: 21
+  person05: 20
+  person06: 23
+  person07: 21
+  person08: 20
+  person09: 26
+  person10: 22
+  person11: 25
+  person12: 24
+  person13: 26
+  person14: 22
+  person15: 27
+  person16: 21
+  person17: 27
+  person18: 26
+  person19: 28
+  person20: 30
+  person21: 27
+  person22: 29
+  person23: 26
+  person24: 27
+  person25: 31
+  person26: 27
+  person27: 28
+  person28: 27
+  person29: 18
+  person30: 28
