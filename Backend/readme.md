@@ -8,6 +8,8 @@ The backend of the Facial Sketch Construction and Recognition (FFCR) project pro
 
 ## File Summaries
 
+### Total Number of Line of Code (Approx.) = 493 _(including documentation comments)_
+
 ### 1. `temp/`
 
 - **Description**: This directory is used as a temporary storage location for uploaded files. Files are stored here temporarily while they are being processed by the application.
