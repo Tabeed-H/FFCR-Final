@@ -1,47 +1,91 @@
-from flask import Flask, request, jsonify
-from script import recognise_image
-import os
-from pymongo import MongoClient, errors
-import gridfs
-from bson.objectid import ObjectId
-import base64
+"""
+Authors: @tabeed @hammad @fatima
+server.py is a flask application that provides APIs for recognising facial sketches, adding new person record and retrieving person details from a MongoDB database
+Uses GridFS for storing image files and integrates with a custom image recognition script
+
+APIs
+-   `/recognise`    (POST)  Process an uploaded image to recognise the person and return the name and confidence socre.
+-   `/add_person`   (POST)   Adds a new person to the database with details and an image.
+-   `/person/<person_id>`   (POST)  Retrieves person details and image from the database.
+
+NOTE Ensure that MongoDB is running and accessible at 'mongodb://localhost:27017
+"""
 
 
-client = MongoClient('mongodb://localhost:27017/')
-db = client['FFCR']
-collection = db['persons']
-fs = gridfs.GridFS(db)
+"""
+Dependencies
+"""
+from flask import Flask, request, jsonify       # To make server request and convert data to JSON format
+from script import recognise_image              # Recognition python script
+import os                                       # For file operations
+from pymongo import MongoClient, errors         # MongoDB ORM
+import gridfs                                   # For large file operations for MongoDB
+from bson.objectid import ObjectId              # Formating IDs
+import base64                                   # For image encodings
+
+# MongoDB connection setup
+client = MongoClient('mongodb://localhost:27017/')  # Connection String
+db = client['FFCR']                                 # DB name
+collection = db['persons']                          # Collection name
+fs = gridfs.GridFS(db)                              # Initialize GridFS instance for handling large files in MongoDB
 
 
+# Initialize Flask Application
 app = Flask(__name__)
 
+# Temporary directory for file uploads
 TEMP_DIR = os.path.join(os.path.dirname(__file__), 'temp')
 
-# Ensure the temp directory exists
+# Ensuring the temp directory exists
 if not os.path.exists(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
 @app.route('/recognize', methods=['POST'])
 def recognize():
+    """
+    API endpoint to recognise a person from an uploaded image.
+    
+    Request:
+    -   File    Image file to be recognised
+    
+    Response:
+    -   JSON Object containing:
+        -  name: Recognised person's name
+        -  confidence: Confidence score of the recognition
+        -  error: Error message (if any)
+    """
+    # If file not present in request
     if 'file' not in request.files:
         return "No file part", 400
+    
+    # Extract File from request
     file = request.files['file']
+
+    # Error checking is filename not present
     if file.filename == '':
         return "No selected file", 400
+    
+    # Save the file to the temp directory
     if file:
-        # Save the file to the temp directory
         file_path = os.path.join(TEMP_DIR, file.filename)
         file.save(file_path)
         
         try:
             # Process the image file
             name, conf, error= recognise_image(file_path)
-            print(name, conf, error)
+
+            # ------------  Debugging line  ------------
+            # print(name, conf, error)
+            # ------------------------------------------
+
             if error is not None:
+                # If error has occured in the recognition
                 response = {
                     "error" : error
                 }
                 return response
+            
+            # Succuessfully recognised image
             response = {
                 "name": name,
                 "confidence": conf
@@ -55,17 +99,39 @@ def recognize():
 
 @app.route('/add_person', methods=['POST'])
 def add_person():
+    """
+    API endpoint to add a new person record to the database
+    NOTE This endpoint as of now has not been implemented on the front-end
+    
+    Request:
+    -   File        Image file of the person
+    -   Form Data   Details of the person (name, height, age, sex, address, person_id)
+    
+    Response:
+    -   JSON object containing
+        -   message Status of the operation (Success or error)
+    """
+
+    # If person image is not uploaded
     if 'file' not in request.files:
         return "No file part", 400
+    
+    # Extracting File from request
     file = request.files['file']
+
+    # Additional error checking if filename not present
     if file.filename == '':
         return "No selected file", 400
 
     # Extract other details from the request
     person_details = request.form.to_dict()
+
+    # Requied field form data should have
     required_fields = ['name', 'height', 'age', 'sex', 'address', 'person_id']
+
     for field in required_fields:
         if field not in person_details:
+            # If any field is missing
             return f"Missing {field}", 400
 
     if file:
@@ -89,13 +155,25 @@ def add_person():
 
 @app.route('/person/<person_id>', methods=['GET'])
 def get_person(person_id):
+    """
+    API endpoint to retrieve details and image of a person from the database.
+    
+    Request:
+    -   person_id   ID of the person to be retrived
+    
+    Response:
+    -   JSON object containing
+        -   Person Details
+        -   Base 64 encoded image (if Available)
+        -   message Error message (if Any)"""
     try:
         person = collection.find_one({"person_id": person_id})
         if not person:
             return jsonify({"message": "Person not found"}), 404
         
-                # Retrieve the image from GridFS
+        # Retrieve the image from GridFS
         image_id = person.get('image_id')
+
         if image_id:
             grid_out = fs.get(ObjectId(image_id))
             image_data = grid_out.read()
