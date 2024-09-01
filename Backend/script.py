@@ -1,5 +1,5 @@
 '''
-Authors: @tabeed @hammad @fatima
+Authors: @tabeed @hammad @fatimah
 scripyt.py is the main python script that is response for the face detection and recognition.
 The model was first trained on Google Collab and then tested.
 The script can recognise more than one face at a time but is tailored to return only one.
