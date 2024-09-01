@@ -1,0 +1,8 @@
+Total images: 13
+Number of persons: 5
+Number of images per person:
+  person01: 1
+  person03: 1
+  person19: 4
+  person26: 4
+  person27: 3
