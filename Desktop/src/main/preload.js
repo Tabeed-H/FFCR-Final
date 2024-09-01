@@ -33,6 +33,18 @@ const api = {
       return "Error Fetching Person Details";
     }
   },
+  saveImageTemp: async (imageDataURL) => {
+    try {
+      const result = await ipcRenderer.invoke(
+        "save-image-temporarily",
+        imageDataURL
+      );
+      return result;
+    } catch (error) {
+      console.error("Error Saving Captured Image");
+      return "Error Saving Captured Images";
+    }
+  },
 };
 
 // Expose the API methods to the renderer process

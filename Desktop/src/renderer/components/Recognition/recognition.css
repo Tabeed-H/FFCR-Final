@@ -161,3 +161,25 @@ button:hover {
   height: 18px;
   margin-right: 2em;
 }
+#startCamera:hover {
+  background-color: #439846;
+}
+.capture-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.capture-button img {
+  width: 50px;
+  height: auto;
+  background: none;
+}
+.capture-button:hover {
+  background: none;
+}
+.capture-button:hover img {
+  background: none;
+  content: url("../../../../assets/images/shutter.png");
+}

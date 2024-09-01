@@ -4,6 +4,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
+const os = require("os");
 const FormData = require("form-data");
 
 let mainWindow, drawSketchWindow;
@@ -68,6 +69,22 @@ ipcMain.handle("get-file-list", async (event, directoryPath) => {
 });
 ipcMain.on("closeWindow", () => {
   drawSketchWindow.close();
+});
+
+ipcMain.handle("save-image-temporarily", async (event, imageDataURL) => {
+  console.log("HITT");
+  const base64Data = imageDataURL.replace(/^data:image\/png;base64,/, "");
+  const tempDir = os.tmpdir();
+  const filePath = path.join(tempDir, `captured-image-${Date.now()}.png`);
+  console.log(filePath);
+
+  try {
+    fs.writeFileSync(filePath, base64Data, "base64");
+    return filePath; // Return the file path to the renderer process
+  } catch (err) {
+    console.error("Failed to save the image:", err);
+    throw err;
+  }
 });
 
 ipcMain.handle("send-image", async (event, filePath) => {

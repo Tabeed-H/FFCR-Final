@@ -13,10 +13,56 @@
     </div>
     <div class="container" id="container">
       <div id="left-panel">
-        <input type="file" id="imageUpload" />
+        <div
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <button
+            id="startCamera"
+            style="
+              margin-top: 0;
+              background-color: #4caf50;
+              color: white;
+              padding: 10px 20px;
+              font-size: 16px;
+              font-weight: bold;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            "
+          >
+            Capture Image
+          </button>
+          <p style="margin: 10px; color: gray">--- or ---</p>
+          <input type="file" id="imageUpload" />
+        </div>
         <div id="imagePreview"></div>
         <button id="sendImage">Send Image</button>
         <div id="loader"></div>
+
+        <video
+          id="video"
+          width="640"
+          height="300"
+          autoplay
+          style="display: none; margin-top: 20px"
+        ></video>
+        <!-- <button id="captureImage" style="display: none">Shutter</button> -->
+        <button id="captureImage" style="display: none" class="capture-button">
+          <img
+            src="../../../../assets/images/aperture.png"
+            alt="Shutter"
+            id="captureImageIcon"
+          />
+        </button>
+
+        <canvas
+          id="canvas"
+          width="640"
+          height="480"
+          style="display: none"
+        ></canvas>
       </div>
       <div id="right-panel">
         <!-- Person details will be displayed here -->
