@@ -1,11 +1,11 @@
-/* styles.css */
-
+/* Global styles for the body */
 body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* Hide scrollbars */
 }
 
+/* Style for background image */
 .background-image {
   position: absolute;
   right: 0;
@@ -17,6 +17,7 @@ body {
   opacity: 50%;
 }
 
+/* Main container styling */
 .content {
   position: absolute;
   top: 50%;
@@ -25,6 +26,7 @@ body {
   text-align: center;
 }
 
+/* Elements container styling */
 .main-container {
   display: flex;
   max-width: 421px;
@@ -35,16 +37,22 @@ body {
   font-weight: 400;
   padding: 0 20px;
 }
+
+/* Heading styling */
 .main-heading {
   white-space: nowrap;
   font: 700 40px Poppins, sans-serif;
   text-shadow: #1a1a1a;
 }
+
+/* Sub-Heading styling */
 .main-sub {
   font-family: Poppins, sans-serif;
   margin-top: 9px;
   white-space: nowrap;
 }
+
+/* Description styling */
 .main-des {
   text-align: center;
   align-self: stretch;
@@ -52,6 +60,8 @@ body {
   width: 100%;
   font: 300 15px Poppins, sans-serif;
 }
+
+/* Button Styling */
 .main-btn {
   font-family: Poppins, sans-serif;
   justify-content: center;
@@ -64,6 +74,8 @@ body {
   padding: 11px 43px;
   cursor: pointer;
 }
+
+/* Button Hover styling */
 .main-btn:hover {
   background-color: #1a1a1a;
 }

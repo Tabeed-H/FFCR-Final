@@ -1,3 +1,7 @@
+/**
+ * This file handles the button actions.
+ * Interacts with the exposed APIs from Electron js
+ */
 // Use window.electronAPI to access Node.js APIs
 document.getElementById("draw-sketch-btn").addEventListener("click", () => {
   // Send message to the main process to open the draw sketch window
