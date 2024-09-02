@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Reset default margin, padding, and scrollbar width */
 body {
   margin: 0;
   padding: 0;
   scrollbar-width: 0;
 }
+
+/* Main container styling */
 .main {
   width: 100vw;
   height: 100vh;
@@ -12,6 +16,7 @@ body {
   justify-content: space-between;
 }
 
+/* Left panel styling */
 .left {
   flex-grow: 0.5;
   max-width: 25%;
@@ -21,6 +26,8 @@ body {
   align-items: center;
   justify-content: flex-start;
 }
+
+/* Middle panel styling */
 .middle {
   flex-grow: 3;
   max-width: 50%;
@@ -30,6 +37,8 @@ body {
   font-family: Poppins;
   padding-top: 20px;
 }
+
+/* Right panel styling */
 .right {
   width: 25%;
   display: flex;
@@ -40,21 +49,28 @@ body {
   justify-content: center;
   background-color: #e9ecef;
 }
+
+/* Image styling within the right panel */
 .right > img {
   width: 150px;
   max-height: 250px;
   margin: 10px;
   cursor: pointer;
 }
+
+/* Image hover effect */
 .right > img:hover {
   background-color: #dee2e6;
 }
 
+/* Heading styling for left panel */
 .left > h1 {
   font-size: 14px;
   color: #ffffff;
   font-family: Poppins;
 }
+
+/* Facial component button styling */
 .component {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -72,9 +88,13 @@ body {
   -o-border-radius: 15px;
   cursor: pointer;
 }
+
+/* Facial component hover effect */
 .component:hover {
   background-color: #adb5bd;
 }
+
+/* Image styling inside components */
 .component-img {
   height: 45px;
   width: 45px;
@@ -82,10 +102,14 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Component label styling */
 .compnent-tag {
   font-family: Poppins;
   font-size: 14px;
 }
+
+/* Background images for each facial component */
 .c-head {
   background-image: url("file:///assets/Default/head/01.png");
 }
@@ -110,42 +134,43 @@ body {
 .c-more {
   background-image: url("file:///assets/Default/more/01.png");
 }
-/* lkdfkf */
+
+/* Canvas container styling */
 #canvas-container {
   position: relative;
-  /* width: 800px; */
-  /* height: 600px; */
   box-shadow: 0 0 5px 1px black;
   margin: 10px auto;
   border: 5px solid transparent;
 }
+
+/* Canvas container styling when dragging */
 #canvas-container.over {
   border: 5px dashed cyan;
 }
+
+/* Draggable image styling */
 #images img.img_dragging {
-  /* width: 100%; */
   opacity: 0.4;
 }
-/* 
-Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/ 
-*/
 
-/* Prevent the text contents of draggable elements from being selectable. */
+/* Styling for draggable elements to prevent text selection */
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  /* Required to make elements draggable in old WebKit */
   -khtml-user-drag: element;
   -webkit-user-drag: element;
   cursor: move;
 }
 
+/* Action button container styling */
 .actions {
   display: flex;
   flex-direction: column;
 }
+
+/* General action button styling */
 .action-btn {
   font-family: Poppins, sans-serif;
   justify-content: center;
@@ -158,15 +183,19 @@ Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/
   padding: 11px 43px;
   cursor: pointer;
 }
+
+/* Action button hover effect */
 .action-btn:hover {
   background-color: #1a1a1a;
 }
+
+/* Specific styling for the exit button */
 #exit {
   background-color: #d62828;
   color: #fff;
 }
 
-/* Style the dropdown button */
+/* Styling for the dropdown button */
 .dropbtn {
   background-color: #4caf50;
   color: white;
@@ -177,13 +206,13 @@ Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/
   width: 100%;
 }
 
-/* Dropdown button on hover & focus */
+/* Hover and focus effects for the dropdown button */
 .dropbtn:hover,
 .dropbtn:focus {
   background-color: #3e8e41;
 }
 
-/* Style the dropdown content */
+/* Dropdown content container styling */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -193,7 +222,7 @@ Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/
   z-index: 1;
 }
 
-/* Links inside the dropdown */
+/* Styling for links inside the dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -201,17 +230,17 @@ Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/
   display: block;
 }
 
-/* Change color of dropdown links on hover */
+/* Hover effect for dropdown links */
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-/* Show the dropdown menu on hover */
+/* Display dropdown content on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
+/* Change background color of dropdown button when dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
