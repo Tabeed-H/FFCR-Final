@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Title -->
     <title>Image Recognition</title>
+
+    <!-- Style sheet -->
     <link rel="stylesheet" href="recognition.css" />
   </head>
   <body>
+    <!-- Heading -->
     <h1>Image Recognition</h1>
+    <!-- Section to display the current status of the process -->
     <div id="results-info">
       <div id="process-indicator" style="color: gray; border: 1px solid gray">
         Upload Image
       </div>
     </div>
+
+    <!-- Container for the main layout -->
     <div class="container" id="container">
+      <!-- Left panel: For capturing or uploading images -->
       <div id="left-panel">
+        <!-- Controls for capturing image or uplading file -->
         <div
           style="display: flex; justify-content: center; align-items: center"
         >
+          <!-- Button to start camera for captuing an image -->
           <button
             id="startCamera"
             style="
@@ -34,13 +44,24 @@
           >
             Capture Image
           </button>
+
+          <!-- Divider -->
           <p style="margin: 10px; color: gray">--- or ---</p>
+
+          <!-- Input for uploading an image file -->
           <input type="file" id="imageUpload" />
         </div>
+
+        <!-- Area to display the preview of the selected or captured image -->
         <div id="imagePreview"></div>
+
+        <!-- Button to make recognition -->
         <button id="sendImage">Send Image</button>
+
+        <!-- Loader to show during processing -->
         <div id="loader"></div>
 
+        <!-- Video element for live camera feed (Hidden by default) -->
         <video
           id="video"
           width="640"
@@ -48,7 +69,8 @@
           autoplay
           style="display: none; margin-top: 20px"
         ></video>
-        <!-- <button id="captureImage" style="display: none">Shutter</button> -->
+
+        <!-- Button to capture an image from the video feed (hidden by default) -->
         <button id="captureImage" style="display: none" class="capture-button">
           <img
             src="../../../../assets/images/aperture.png"
@@ -57,6 +79,7 @@
           />
         </button>
 
+        <!-- Canvas element used to capure a snapshot from the video feed -->
         <canvas
           id="canvas"
           width="640"
@@ -64,10 +87,14 @@
           style="display: none"
         ></canvas>
       </div>
+
+      <!-- Right pannel -->
       <div id="right-panel">
         <!-- Person details will be displayed here -->
       </div>
     </div>
+
+    <!-- Instructions pannel -->
     <div id="instructions-panel">
       <h3>Instructions</h3>
       <h4>Confidence Score</h4>
@@ -84,6 +111,8 @@
         </li>
       </ul>
     </div>
+
+    <!-- Link to js file to handle logic -->
     <script src="./recognition.js"></script>
   </body>
 </html>
